@@ -6,9 +6,10 @@ import { ChapterContext } from './ChapterContext'
 
 interface ChapterProps {
   elements: IDoc[]
+  offsetTrigger?: number // controls when the table of context lights up
 }
 
-const Chapter: FC<ChapterProps> = ({ elements }) => {
+const Chapter: FC<ChapterProps> = ({ elements, offsetTrigger = -85 }) => {
   const [dangerousHtml, setDangerousHtml] = useState<{ __html: string }>({
     __html: '',
   })
@@ -26,7 +27,7 @@ const Chapter: FC<ChapterProps> = ({ elements }) => {
 
   return (
     <Container className="markdown">
-      <TrackingPixel id={trackingId} />
+      <TrackingPixel id={trackingId} offsetTrigger={offsetTrigger} />
       <JumpPixel id={jumpToId} />
       <div dangerouslySetInnerHTML={dangerousHtml} />
     </Container>
@@ -38,13 +39,17 @@ export default Chapter
 const Container = styled.div`
   position: relative;
 `
+interface TrackingPixelProps {
+  offsetTrigger: number
+}
 
-const TrackingPixel = styled.div`
+const TrackingPixel = styled.div<TrackingPixelProps>`
   position: absolute;
   background: transparent;
-  top: -85px;
+  top: ${({ offsetTrigger }) => offsetTrigger}px;
   width: 1px;
   height: 1px;
+  background: red;
 `
 
 const JumpPixel = styled.div`

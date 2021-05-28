@@ -60,7 +60,7 @@ const TableOfContents: FC<TableOfContentsProps> = ({}) => {
 
 const Menu = styled.div`
   position: sticky;
-  top: 90px;
+  top: 30px;
 `
 
 const Link = styled.a`
@@ -71,6 +71,7 @@ const Link = styled.a`
 const Highlight = styled.p`
   margin: 0;
   color: blue;
+  font-weight: bold;
   cursor: pointer;
 `
 
