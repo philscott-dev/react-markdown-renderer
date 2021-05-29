@@ -59,7 +59,6 @@ const TrackingPixel = styled.div<TrackingPixelProps>`
   top: ${({ offsetTrigger }) => offsetTrigger}px;
   width: 1px;
   height: 1px;
-  background: red;
 `
 
 const JumpPixel = styled.div<TrackingPixelProps>`
