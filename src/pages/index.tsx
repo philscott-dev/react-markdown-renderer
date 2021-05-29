@@ -3,6 +3,7 @@ import { NextPage } from 'next'
 import styled from '@emotion/styled'
 import { ChapterProvider, Content } from 'components/Chapter'
 import { TableOfContents } from 'components/TableOfContents'
+import ProgressScrollbar from 'components/ProgressScrollbar/ProgressScrollbar'
 
 const markdown = `
 <h2 id="first">First Heading</h2>
@@ -69,16 +70,21 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 const Index: FC<NextPage> = ({}) => {
   return (
-    <ChapterProvider markdown={markdown}>
-      <section style={{ display: 'flex' }}>
-        <ChaptersContainer>
-          <TableOfContents />
-        </ChaptersContainer>
-        <ContentContainer>
-          <Content />
-        </ContentContainer>
-      </section>
-    </ChapterProvider>
+    <>
+      <ProgressScrollbar />
+      <div id="tracking-pixel" />
+      <ChapterProvider markdown={markdown}>
+        <section style={{ display: 'flex' }}>
+          <ChaptersContainer>
+            <TableOfContents />
+          </ChaptersContainer>
+          <ContentContainer>
+            <Content />
+          </ContentContainer>
+        </section>
+      </ChapterProvider>
+      <Footer />
+    </>
   )
 }
 
@@ -96,4 +102,9 @@ export const ChaptersContainer = styled.div`
 
 export const ContentContainer = styled.div`
   max-width: 1024px;
+`
+
+const Footer = styled.div`
+  height: 800px;
+  background: linear-gradient(135deg, blue 0%, lightblue 100%);
 `

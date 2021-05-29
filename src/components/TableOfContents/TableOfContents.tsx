@@ -3,11 +3,6 @@ import { FC, useContext } from 'react'
 import styled from '@emotion/styled'
 import { ChapterContext } from '../Chapter'
 import offset from '../../helpers/offset'
-import getConfig from 'next/config'
-
-const {
-  publicRuntimeConfig: { hostname },
-} = getConfig()
 
 interface TableOfContentsProps {
   onMouseDown?: () => void
